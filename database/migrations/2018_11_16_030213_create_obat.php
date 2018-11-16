@@ -13,7 +13,7 @@ class CreateObat extends Migration
      */
     public function up()
     {
-        Schema::table('obat', function (Blueprint $table) {
+        Schema::create('obat', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_obat');
             $table->integer('harga');

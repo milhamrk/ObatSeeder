@@ -9,19 +9,20 @@ class ObatSeeder extends Seeder
      *
      * @return void
      */
-	$faker = Faker\Factory::create();
-    $limit = 15;
 	 
     public function run()
     {
-		$unixTimestap = '1961067200';
-        DB::table('obat')->insert([
-            'nama_obat' => $faker->name,
-            'harga' => numberBetween($min = 10000, $max = 90000),
-			'stok' => numberBetween($min = 10, $max = 100),
-			'expired_date' => $faker->date('Y-m-d', $unixTimestamp),
-			'production_date' => $faker->date('Y-m-d', $unixTimestamp),
-        ]);
-    }
+		$faker = Faker\Factory::create();
+		$limit = 15;
+		$unixTimestamp = '1961067200';
+		for ($i = 0; $i < $limit; $i++) {           
+			DB::table('obat')->insert([
+				'nama_obat' => $faker->name,
+				'harga' => $faker->numberBetween(10000,90000),
+				'stok' => $faker->numberBetween(10, 100),
+				'expired_date' => $faker->date('Y-m-d', $unixTimestamp),
+				'production_date' => $faker->date('Y-m-d', 'now')
+			]);
+		}
     }
 }
